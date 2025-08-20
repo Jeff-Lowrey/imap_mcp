@@ -2,7 +2,7 @@
 name: Minor Issue Template
 about: This template should be used for minor changes
 title: "[Minor]"
-labels: 
+labels: "minor"
 assignees: ''
 
 ---
