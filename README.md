@@ -3,5 +3,3 @@ An example Model Context Protocol client and server to interface with an SMTP se
 
 This server will allow an MCP Host to send email messages over SMTP.
 
-Tasks:
-1. Implement 
