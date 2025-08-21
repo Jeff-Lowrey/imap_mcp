@@ -1,7 +1,79 @@
 [project]
-name = "smtp-mcp"
-version = "0.1.0"
-description = "Add your description here"
+name = "smtp_mcp"
+dynamic = ["version"]
+description = 'This is a Django project for executing an OpenTofu build from a static or data-driven configuration'
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+keywords = []
+authors = [
+  { name = "Jeff Lowrey", email = "jeff@jaral.org" },
+]
+classifiers = [
+  "Development Status :: 1 - Pre-alpha",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.13"]
+
+[project.urls]
+Documentation = "https://github.com/Jeff_Lowrey/smtp_mcp#readme"
+Issues = "https://github.com/Jeff_Lowrey/smtp_mcp/issues"
+Source = "https://github.com/Jeff_Lowrey/smtp_mcp"
+
+[tool.hatch.version]
+path = "src/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/ tests}"
+
+[tool.hatch.envs.smtp_mcp]
+type = "virtual"
+python = "3.13"
+dependencies = [
+  "isort", 
+  "ruff", 
+  "pytest", 
+  "pytest-asyncio", 
+  "pylance",
+  "wheel",
+  "setuptools"]
+path = "./.venv"
+
+
+[tool.pyright]
+include = ["src", "tests"]
+exclude = ["**.hatch",
+    "**/*__pycache__",
+    "**.ruff_cache",
+    "**vscode",
+    "**.venv",
+    "**dist",
+    "/Library"
+]
+
+reportUnnecessaryIsInstance = false
+
+[tool.ruff]
+extend-exclude = [".ipynb"]
+line-length = 120
+
+[tool.coverage.run]
+source_pkgs = ["smtp_mcp", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/__about__.py",
+]
+
+[tool.coverage.paths]
+tests = ["tests", "*/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
