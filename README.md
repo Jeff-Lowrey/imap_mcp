@@ -1,5 +1,5 @@
-# smtp_mcp
-An example Model Context Protocol client and server to interface with an SMTP server
+# imap_mcp
+An example Model Context Protocol client and server to interface with an IMAP server
 
-This server will allow an MCP Host to send email messages over SMTP.
+This server will allow an MCP Host to apply AI processing to email.
 
