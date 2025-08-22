@@ -1,5 +1,5 @@
 [project]
-name = "smtp_mcp"
+name = "imap_mcp"
 dynamic = ["version"]
 description = 'This is a Django project for executing an OpenTofu build from a static or data-driven configuration'
 readme = "README.md"
@@ -14,9 +14,9 @@ classifiers = [
   "Programming Language :: Python :: 3.13"]
 
 [project.urls]
-Documentation = "https://github.com/Jeff_Lowrey/smtp_mcp#readme"
-Issues = "https://github.com/Jeff_Lowrey/smtp_mcp/issues"
-Source = "https://github.com/Jeff_Lowrey/smtp_mcp"
+Documentation = "https://github.com/Jeff_Lowrey/imap_mcp#readme"
+Issues = "https://github.com/Jeff_Lowrey/imap_mcp/issues"
+Source = "https://github.com/Jeff_Lowrey/imap_mcp"
 
 [tool.hatch.version]
 path = "src/__about__.py"
@@ -29,10 +29,12 @@ extra-dependencies = [
 [tool.hatch.envs.types.scripts]
 check = "mypy --install-types --non-interactive {args:src/ tests}"
 
-[tool.hatch.envs.smtp_mcp]
+[tool.hatch.envs.imap_mcp]
 type = "virtual"
 python = "3.13"
 dependencies = [
+  "httpx",
+  "mcp[cli]",
   "isort", 
   "ruff", 
   "pytest", 
@@ -61,7 +63,7 @@ extend-exclude = [".ipynb"]
 line-length = 120
 
 [tool.coverage.run]
-source_pkgs = ["smtp_mcp", "tests"]
+source_pkgs = ["imap_mcp", "tests"]
 branch = true
 parallel = true
 omit = [
