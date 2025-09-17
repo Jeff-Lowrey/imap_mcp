@@ -1,7 +1,90 @@
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
 [project]
-name = "smtp-mcp"
+name = "imap_mcp"
 version = "0.1.0"
-description = "Add your description here"
+description = 'IMAP MCP server for Claude AI to access and manage email via IMAP protocol'
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+keywords = []
+authors = [
+  { name = "Jeff Lowrey", email = "jeff@jaral.org" },
+]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+  "License :: Other/Proprietary License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython"
+]
+dependencies = [
+  "httpx>=0.25.0",
+  "mcp[cli]>=0.1.0",
+]
+license = {file = "LICENSE"}
+
+[project.optional-dependencies]
+dev = [
+  "isort>=5.12.0",
+  "ruff>=0.1.0",
+  "pytest>=7.0.0",
+  "pytest-asyncio>=0.21.0",
+  "mypy>=1.0.0",
+]
+
+[project.urls]
+Documentation = "https://github.com/Jeff_Lowrey/imap_mcp#readme"
+Issues = "https://github.com/Jeff_Lowrey/imap_mcp/issues"
+Source = "https://github.com/Jeff_Lowrey/imap_mcp"
+
+[tool.pdm]
+distribution = false
+
+
+[tool.pdm.scripts]
+test = {shell = "PYTHONPATH=src pytest tests"}
+lint = "ruff check src tests"
+format = "ruff format src tests"
+typecheck = "mypy src tests"
+
+[tool.pyright]
+include = ["src", "tests"]
+exclude = ["**/*__pycache__",
+    "**.ruff_cache",
+    "**vscode",
+    "**.venv",
+    "**__pypackages__",
+    "**dist",
+    "/Library"
+]
+
+reportUnnecessaryIsInstance = false
+
+[tool.ruff]
+extend-exclude = [".ipynb"]
+line-length = 120
+
+[tool.coverage.run]
+source_pkgs = ["imap_mcp", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/__about__.py",
+]
+
+[tool.coverage.paths]
+tests = ["tests", "*/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.pdm.venv]
+in_project = true
+prompt = "{project_name}-{python_version}"
