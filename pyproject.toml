@@ -5,7 +5,7 @@ build-backend = "pdm.backend"
 [project]
 name = "imap_mcp"
 version = "0.1.0"
-description = 'This is a Django project for executing an OpenTofu build from a static or data-driven configuration'
+description = 'IMAP MCP server for Claude AI to access and manage email via IMAP protocol'
 readme = "README.md"
 requires-python = ">=3.13"
 keywords = []
@@ -13,24 +13,25 @@ authors = [
   { name = "Jeff Lowrey", email = "jeff@jaral.org" },
 ]
 classifiers = [
-  "Development Status :: 1 - Pre-alpha",
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+  "License :: Other/Proprietary License",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.13"
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython"
 ]
 dependencies = [
-  "httpx",
-  "mcp[cli]",
+  "httpx>=0.25.0",
+  "mcp[cli]>=0.1.0",
 ]
+license = {file = "LICENSE"}
 
 [project.optional-dependencies]
 dev = [
-  "isort", 
-  "ruff", 
-  "pytest", 
-  "pytest-asyncio", 
-  "pylance",
-  "wheel",
-  "setuptools",
+  "isort>=5.12.0",
+  "ruff>=0.1.0",
+  "pytest>=7.0.0",
+  "pytest-asyncio>=0.21.0",
   "mypy>=1.0.0",
 ]
 
@@ -42,17 +43,6 @@ Source = "https://github.com/Jeff_Lowrey/imap_mcp"
 [tool.pdm]
 distribution = false
 
-[tool.pdm.dev-dependencies]
-dev = [
-  "isort", 
-  "ruff", 
-  "pytest", 
-  "pytest-asyncio", 
-  "pylance",
-  "wheel",
-  "setuptools",
-  "mypy>=1.0.0",
-]
 
 [tool.pdm.scripts]
 test = {shell = "PYTHONPATH=src pytest tests"}
@@ -94,3 +84,7 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+
+[tool.pdm.venv]
+in_project = true
+prompt = "{project_name}-{python_version}"
