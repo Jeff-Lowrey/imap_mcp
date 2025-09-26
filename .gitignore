@@ -198,3 +198,7 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+.claude_actions/
+# Project-specific Claude rules
+CLAUDE.md
